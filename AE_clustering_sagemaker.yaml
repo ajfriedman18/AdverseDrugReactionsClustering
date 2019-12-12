@@ -1,0 +1,63 @@
+---
+AWSTemplateFormatVersion: 2010-09-09
+Description: CloudFormation template for creating workshop resources.
+Resources:
+    SagemakerRole:
+        Type: AWS::IAM::Role
+        Properties:
+            AssumeRolePolicyDocument:
+                Version: "2012-10-17"
+                Statement:
+                  -
+                    Sid: ""
+                    Effect: "Allow"
+                    Principal:
+                      Service:
+                        - "sagemaker.amazonaws.com"
+                    Action:
+                      - "sts:AssumeRole"
+            ManagedPolicyArns:
+                - "arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryFullAccess"
+                - "arn:aws:iam::aws:policy/AmazonECS_FullAccess"
+                - "arn:aws:iam::aws:policy/AmazonSageMakerFullAccess"
+                - "arn:aws:iam::aws:policy/AmazonS3FullAccess"
+            Policies: 
+                - 
+                  PolicyName: "ComprehendmedicalPolicy"
+                  PolicyDocument:
+                    Version: "2012-10-17"
+                    Statement: 
+                      - 
+                        Effect: "Allow"
+                        Action: "comprehendmedical:*"
+                        Resource: "*"
+    SagemakerNotebooklifecycle:
+        Type: "AWS::SageMaker::NotebookInstanceLifecycleConfig"
+        Properties:
+            OnStart:
+                - Content:
+                    Fn::Base64: |
+                        #!/bin/bash
+                        sudo -u ec2-user -i <<'EOF'
+                        cd SageMaker
+                        source activate python3
+                        #install Gensim
+                        pip install --upgrade pip
+                        pip install -U gensim
+                        pip install columnize
+                        source deactivate
+                        git clone https://github.com/ujjwalr/AdverseDrugReactionsClustering.git
+                        EOF
+    SagemakerNotebook:   
+        Type: "AWS::SageMaker::NotebookInstance"
+        Properties:
+            InstanceType: "ml.t2.medium"
+            LifecycleConfigName: !GetAtt SagemakerNotebooklifecycle.NotebookInstanceLifecycleConfigName
+            RoleArn: !GetAtt SagemakerRole.Arn
+Outputs:
+  SagemakerNotebook:
+    Description: Sagemaker Notebook Instance
+    Value: !Ref SagemakerNotebook
+  SagemakerRole:
+    Description: ARN for the role assigned to sagemaker notebook
+    Value: !GetAtt SagemakerRole.Arn

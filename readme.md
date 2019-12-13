@@ -12,7 +12,7 @@ Dua, D. and Graff, C. (2019). UCI Machine Learning Repository. Irvine, CA: Unive
 ### Steps
 1. Use the file AE_clustering_sagemaker.yaml to create an AWS cloudformation template. The template create the IAM roles and Sagemaker notebook instance.
 2. Open up the sagemaker notebook instance in your local browser.
-3. Go to the artifacts directory and run throguh the notebooks strating with 0,1 and 2 in order.
+3. Go to the artifacts directory and run throguh the notebooks starting with 0,1 and 2 in order.
 
 ### Cleanup
 Go to AWS cloudformation and delete the stack to clean up the resources.

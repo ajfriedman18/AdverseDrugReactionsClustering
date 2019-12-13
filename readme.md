@@ -1,3 +1,9 @@
+### Authors
+* Ujjwal Ratan (ujjwalr@amazon.com)
+* Aaron Friedman (ajfriedm@amazon.com)
+
+This workshop was presented at AWS Re:invent 2019.
+
 ### Adverse Drug Reaction Clustering
 A method to cluster drugs based on reactions reported in reviews. Amazon comprehend medical is used to generate a list of terms that consist of adverse reactions for the drugs generated from the reviews. Then Amazon Sagemaker is used to create a custom clustering model to cluster the drugs based on those reactions. Finally, Sagemaker Hyperparameter optimization is used to get the approriate number of clusters for the drugs.
 

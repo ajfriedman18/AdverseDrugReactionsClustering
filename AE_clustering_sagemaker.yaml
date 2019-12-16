@@ -54,6 +54,7 @@ Resources:
             InstanceType: "ml.t2.medium"
             LifecycleConfigName: !GetAtt SagemakerNotebooklifecycle.NotebookInstanceLifecycleConfigName
             RoleArn: !GetAtt SagemakerRole.Arn
+            VolumeSizeInGB: 20
 Outputs:
   SagemakerNotebook:
     Description: Sagemaker Notebook Instance

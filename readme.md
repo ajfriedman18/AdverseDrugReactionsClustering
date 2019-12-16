@@ -16,7 +16,7 @@ It is a part of the UCI machine learning repository.
 Dua, D. and Graff, C. (2019). UCI Machine Learning Repository. Irvine, CA: University of California, School of Information and Computer Science.
 
 ### Steps
-1. Use the file AE_clustering_sagemaker.yaml template to create an AWS cloudformation stack. The stack creates the IAM role and Sagemaker notebook instance and clones this repository on the instance. It also intalls all dependencies.
+1. Use the file AE_clustering_sagemaker.yaml template to create an AWS cloudformation stack. The stack creates the IAM role, Sagemaker notebook instance and clones this repository on the instance. It also installs all dependencies.
 2. Navigate to Sagemaker -- Notebook instances. You will see the newly created instance in your list of instances. Launch the jupyter notebook in your local browser.
 3. Go to the directory AdverseDrugReactionsClustering/artifacts/ and run through the notebooks starting with 0,1 and 2 in order.
 

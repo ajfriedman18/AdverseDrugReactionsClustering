@@ -47,6 +47,10 @@ Resources:
                         pip install columnize
                         source deactivate
                         git clone https://github.com/ujjwalr/AdverseDrugReactionsClustering.git
+                        cd AdverseDrugReactionsClustering
+                        tar xzf output.tar
+                        cd artifacts/source
+                        unzip drugsCom_raw.tsv.zip
                         EOF
     SagemakerNotebook:   
         Type: "AWS::SageMaker::NotebookInstance"

@@ -51,7 +51,7 @@ Resources:
     SagemakerNotebook:   
         Type: "AWS::SageMaker::NotebookInstance"
         Properties:
-            InstanceType: "ml.t2.medium"
+            InstanceType: "ml.c5.xlarge"
             LifecycleConfigName: !GetAtt SagemakerNotebooklifecycle.NotebookInstanceLifecycleConfigName
             RoleArn: !GetAtt SagemakerRole.Arn
             VolumeSizeInGB: 20
